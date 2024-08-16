@@ -1,0 +1,486 @@
+@font-face {
+  font-family: soufian;
+  src: url(/styles/font/SoufianFont.otf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: 0.2s linear;
+}
+
+:root {
+  --main-color: #d3ad7f;
+  --background-color: #000207;
+  --text-color: #fff;
+  --card-first-color: #232323;
+  --card-second-color: #4f4f4f;
+  --header-border-color: rgba(255, 255, 255, 0.2);
+  --navbar-link-color: rgba(255, 255, 255, 0.6);
+  --icon-color: rgba(255, 255, 255, 0.5);
+  --search-border-color: rgba(255, 255, 255, 0.5);
+  --search-background-color: rgba(255, 255, 255, 0.1);
+  --contact-background-color: #212121;
+  --load-more-color: #d39c51;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+  font-family: soufian;
+}
+
+.header {
+  background-color: transparent;
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 7%;
+  border-bottom: 2px solid var(--header-border-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.logoSA {
+  height: 2rem;
+}
+
+.navbar a {
+  margin: 10px;
+  color: var(--navbar-link-color);
+  border-bottom: 0px solid var(--header-border-color);
+  padding-bottom: 0px;
+}
+
+.navbar a:hover {
+  color: var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  transition: all 0.15s;
+  padding-bottom: 2px;
+}
+
+.icons div {
+  color: var(--icon-color);
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 30px;
+}
+
+.icons div:hover {
+  color: var(--text-color);
+}
+
+.search-artists {
+  position: absolute;
+  right: 10%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  transform: scalex(0);
+  transform-origin: right;
+}
+
+.header .search-artists.active {
+  transform: scalex(1);
+}
+
+.search-artists input {
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
+  text-transform: none;
+  background: transparent;
+  height: 40px;
+  border-radius: 15px;
+  color: var(--text-color);
+  padding: 1rem;
+}
+
+.search-artists label {
+  cursor: pointer;
+  font-size: 2.2rem;
+  margin-right: 1.5rem;
+}
+
+.search-artists label:hover {
+  color: blue;
+}
+
+#search-box {
+  border: 2px solid var(--search-border-color);
+  background: var(--search-background-color);
+}
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("https://i.ibb.co/y5pRRy2/1.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+body {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.cards {
+  position: relative;
+  text-align: center;
+  padding: 0 5%;
+}
+
+.card {
+  width: 190px;
+  height: 254px;
+  background: var(--card-first-color);
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.5s;
+  display: none;
+  margin: 15px 10px;
+  overflow: hidden;
+  font-family: "Poppins";
+}
+
+.card:nth-child(2),
+.card:nth-child(3),
+.card:nth-child(4),
+.card:nth-child(5),
+.card:nth-child(6),
+.card:nth-child(7),
+.card:nth-child(8),
+.card:nth-child(9),
+.card:nth-child(10),
+.card:nth-child(11),
+.card:nth-child(12),
+.card:nth-child(13),
+.card:nth-child(14),
+.card:nth-child(15),
+.card:nth-child(16),
+.card:nth-child(17),
+.card:nth-child(18),
+.card:nth-child(19),
+.card:nth-child(20),
+.card:nth-child(21),
+.card:nth-child(22),
+.card:nth-child(23),
+.card:nth-child(24),
+.card:nth-child(25) {
+  display: inline-block;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+  overflow: hidden;
+  border: 2px solid var(--header-border-color);
+  background: var(--card-second-color);
+}
+
+.card .blob {
+  height: 10px;
+  width: 75%;
+  border-radius: 0 0 30px 30px;
+  margin: 0 auto;
+  background-color: var(--card-second-color);
+  visibility: visible;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.card:hover .blob {
+  height: 0;
+  overflow: hidden;
+}
+
+.card .img {
+  display: flex;
+  margin: 30px auto 10px auto;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  font-size: 11px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+
+.card:hover .img {
+  width: 100%;
+  height: 70%;
+  border-radius: 10px 10px 0 0;
+  margin: 0 auto;
+  overflow: hidden;
+  border-bottom: 2px solid var(--header-border-color);
+}
+
+.names {
+  font-size: 17px;
+  margin-top: 21px;
+  color: var(--text-color);
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  background: var(--contact-background-color);
+  min-height: 24vh;
+  flex-direction: column;
+  gap: 20px;
+  border-top: 2px solid var(--header-border-color);
+}
+
+#text {
+  font-size: 90px;
+  min-height: 20vh;
+  color: var(--text-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#artists {
+  position: relative;
+}
+
+.home img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  min-height: 20vh;
+}
+
+.container {
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding-bottom: 100px;
+  font-family: "Poppins";
+}
+
+.container h2 {
+  font-size: 23px;
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+
+.container p {
+  max-width: 50%;
+  font-size: 15px;
+}
+
+.cards .titleart {
+  color: var(--text-color);
+  font-family: "Poppins";
+  font-size: 25px;
+  margin-bottom: 40px;
+}
+
+#load-more,
+#Load-less {
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--load-more-color);
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-family: "Poppins";
+}
+
+#Load-less {
+  display: none;
+}
+
+.contact .navbar {
+  margin-top: 20px;
+}
+
+.contact h2 {
+  color: var(--text-color);
+  font-family: "Poppins";
+}
+
+.iconsContact i {
+  font-size: 25px;
+  color: var(--text-color);
+  margin: 0px 10px;
+}
+
+/* Media Queries */
+
+/* For tablets and smaller desktops */
+@media (max-width: 1024px) {
+  html {
+    font-size: 55%;
+  }
+
+  .header {
+    padding: 1.5rem 2%;
+  }
+
+  .cards {
+    padding: 0 2%;
+  }
+
+  .card {
+    width: 160px;
+    height: 220px;
+  }
+
+  #text {
+    font-size: 70px;
+  }
+}
+
+/* For larger phones and small tablets */
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+
+  /* .navbar {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        background: var(--background-color);
+        width: 30rem;
+        height: calc(100vh - 9.5rem);
+    } */
+  /* 
+    .navbar.active {
+        right: 0;
+    } */
+
+  /* .navbar a {
+        display: block;
+        margin: 1.5rem;
+        padding: .5rem;
+        font-size: 2rem;
+    } */
+
+  .search-artists {
+    width: 90%;
+    right: 2rem;
+  }
+
+  .card {
+    width: 140px;
+    height: 200px;
+  }
+
+  #text {
+    font-size: 50px;
+  }
+
+  .container p {
+    max-width: 70%;
+  }
+
+  .names {
+    font-size: 15px;
+  }
+}
+
+/* For smaller phones */
+@media (max-width: 450px) {
+  html {
+    font-size: 45%;
+  }
+
+  .header {
+    padding: 1rem;
+  }
+
+  .logoSA {
+    height: 1.5rem;
+  }
+
+  .search-artists {
+    width: 90%;
+    right: 1rem;
+  }
+
+  .card {
+    width: 120px;
+    height: 180px;
+  }
+
+  #text {
+    font-size: 30px;
+  }
+
+  .container p {
+    max-width: 90%;
+  }
+
+  .iconsContact i {
+    font-size: 20px;
+  }
+
+  .names {
+    font-size: 13px;
+  }
+}
+
+/* ****************************************************** */
+/* ******************************************************** */
+/* ---------------------------------------------------------------------------------- */
+
+.picartist {
+  display: flex;
+  border: 3px solid black;
+  background-color: aqua;
+}
+
+.ditailPage {
+  background-color: #fff;
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++ */
+
+.artists_details {
+  display: flex;
+  background-color: #000207;
+  background-color: rebeccapurple;
+  height: 85vh;
+  margin: 15px 12px;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  width: 100%;
+}
+
+.img_artist {
+  background-color: aqua;
+  width: 320px;
+  height: 100%;
+  border-radius: 20px;
+}

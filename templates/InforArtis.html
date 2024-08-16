@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/styles/css/artis.css">
+
+        <title>Artist Info</title>
+    </head>
+    <body>
+        <!-- #MAIN -->
+        <main>
+            <!-- #SIDEBAR -->
+            <aside class="sidebar" data-sidebar>
+                <div class="sidebar-info">
+                    <figure class="avatar-box">
+                        <img src="{{ .Image }}" alt="{{ .Name }}" width="80">
+                    </figure>
+                    <div class="info-content">
+                        <h1 class="name" title="{{ .Name }}">{{ .Name }}</h1>
+                        <p class="title">Artist</p>
+                    </div>
+                </div>
+                <div class="sidebar-info_more">
+                    <div class="separator"></div>
+                    <ul class="contacts-list">
+                        <li class="contact-item">
+                            <div class="contact-info">
+                                <p class="contact-title">Members:</p>
+                                {{ range .Members }}
+                                <a class="contact-link">{{ . }}</a>
+                                {{ end }}
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-info">
+                                <p class="contact-title">Creation Date:</p>
+                                <a class="contact-link">{{ .CreationDate }}</a>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-info">
+                                <p class="contact-title">First Album:</p>
+                                <time datetime="{{ .FirstAlbum }}">{{
+                                    .FirstAlbum }}</time>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div class="separator"></div> -->
+                </div>
+            </aside>
+            <div class="main-content">
+                <nav class="navbar">
+                    <ul class="navbar-list">
+                        <li class="navbar-item">
+                            <button class="navbar-link active"
+                                data-nav-link>Date</button>
+                        </li>
+                        <li class="navbar-item">
+                            <button class="navbar-link"
+                                data-nav-link>Locations</button>
+                        </li>
+                        <li class="navbar-item">
+                            <button class="navbar-link"
+                                data-nav-link>Relation</button>
+                        </li>
+                    </ul>
+                </nav>
+                <article class="about active" data-page="about">
+                    <header>
+                        <h2 class="h2 article-title">Date</h2>
+                    </header>
+                    <section class="about-text">
+                        <p>
+                            {{ .Name }} began their musical journey with the
+                            release of their debut album in {{ .FirstAlbum }}.
+                            This initial release marked the beginning of {{
+                            .Name }}'s career and laid the groundwork for their
+                            future achievements in the music industry.
+                        </p>
+                    </section>
+                </article>
+            </div>
+        </main>
+    </body>
+</html>
