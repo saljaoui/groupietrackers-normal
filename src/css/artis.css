@@ -43,6 +43,9 @@
     text-align: left;
     cursor: pointer;
   }
+  header {
+    color: var(--text-color);
+  }
   
   input, textarea {
     display: block;
@@ -135,6 +138,7 @@
   
   .navbar-list {
     display: flex;
+    color: hsla(0, 0%, 84%, 0.7);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -160,7 +164,7 @@
   .about .article-title { margin-bottom: 15px; }
   
   .about-text {
-    color: var(--light-gray);
+    color: var(--text-color);
     font-size: var(--fs-6);
     font-weight: var(--fw-300);
     line-height: 1.6;

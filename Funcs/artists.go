@@ -58,6 +58,8 @@ func FetchDataRelationFromId(id string) (Artist, error) {
 	artist.Image = artistsJson.Image
 	artist.Name = artistsJson.Name
 	artist.Members = artistsJson.Members
+	artist.FirstAlbum = artistsJson.FirstAlbum
+	artist.CreationDate  = artistsJson.CreationDate
 	artist.Date = dates.Date
 	artist.Location = location.Locations
 

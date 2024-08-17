@@ -6,7 +6,7 @@ type Artist struct {
 	Name           string              `json:"name"`
 	Members        []string            `json:"members"`
 	DatesLocations map[string][]string `json:"datesLocations"`
-	CreationDate   string              `json:"concertDates"`
+	CreationDate   int            `json:"concertDates"`
 	FirstAlbum     string              `json:"firstAlbum"`
 	Date          []string             `json:"date"`
 	Location       []string             `json:"locations"`
