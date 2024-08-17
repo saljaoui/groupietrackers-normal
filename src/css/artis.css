@@ -280,3 +280,15 @@
   
     .timeline-text { max-width: 700px; }
   }
+
+  .navbar-link.active {
+    background-color: #555;
+}
+
+.contact-artists {
+    display: none;
+}
+
+.contact-artists.active {
+    display: block;
+}
