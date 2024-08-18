@@ -15,6 +15,7 @@
     --search-background-color: rgba(255, 255, 255, 0.1);
     --contact-background-color: #212121;
     --load-more-color: #d39c51;
+    --style-color: linear-gradient(to right, #f0b666 , #e0a756);
   
     --ff-poppins: "Poppins", sans-serif;
   
@@ -226,7 +227,7 @@ span.prog {
   display: block;
   font-size: 40px;
   position: relative;
-  background: #FDC663;
+  background: var(--style-color);
   width: 54px;
   border-radius: 10px;
   margin: 6px 0 23px 17px;
@@ -284,11 +285,11 @@ desing relotions
   content: '';
   position: absolute;
   left: 0;
-  top: 12px;
+  top: 7px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #FDC663;
+  background-color: #ffc472;
   box-shadow: 0 0 10px rgba(326, 235, 166, 13.5);
 
 }
@@ -296,7 +297,7 @@ desing relotions
   content: '';
   position: absolute;
   left: 5px;
-  top: 24px;
+  top: 19px;
   bottom: -20px;
     width: 1px;
     height: calc(100% + 19px);
@@ -308,13 +309,13 @@ desing relotions
 .institution {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #FDC663;
+  color: var(--text-color);
 }
 .year {
   font-weight: 500;
   font-size: 0.8em;
   margin-bottom: 5px;
-  color: #cccccc;
+  color: var(--load-more-color);
 }
 
 
@@ -427,4 +428,10 @@ desing relotions
     .social-list { justify-content: center; }
   
     .timeline-text { max-width: 700px; }
+  }
+
+
+  .dates-artist {
+    color: var(--load-more-color);
+    /* font-weight: 500; */
   }

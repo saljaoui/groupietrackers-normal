@@ -74,7 +74,7 @@
 
                 <section class="about-text">
                  
-                    <h2>Dates</h2>
+                    <h2>About</h2>
                         <div class="dates-description">
                             <p class="tit"><strong>{{.Name}}</strong> began their musical journey with the release of their debut album on <strong>{{.FirstAlbum}}</strong>. They have since become a leading name in their genre, known for their unique sound and impactful music.</p>
                         
@@ -85,9 +85,10 @@
                         
                             <p>These dates represent just a fraction of their extensive touring history. <strong>{{.Name}}</strong> continues to inspire audiences around the world.</p>
                         </div>
-                        <ul>
+                        <h2>Dates</h2>
+                        <ul class="dates-artist">
                             {{range .Date}}
-                            <li><strong>{{.}}</strong></li>
+                            <li>{{.}}</li>
                             {{end}}
                         </ul>
                     
@@ -102,7 +103,7 @@
 
                 </header>
                 <section class="about-text">
-                    <h2>Dates</h2>
+                    <h2>Locations</h2>
                     {{range .Location }}
                          <p>{{ . }}</p> 
                     {{end}}
@@ -112,7 +113,9 @@
                 <header>
                     <h2 class="h2 article-title title">Relation</h2>
                     <span class="prog"></span>
+                    <h2>Relations</h2>
                     <div class="datesLocations">
+                        
 
                         <ul>
                             {{range $location, $dates :=
@@ -120,7 +123,7 @@
                             <div class="timeline-item">
                                 <li>
                                     <strong
-                                        class="institution">{{$location}}:</strong>
+                                        class="institution">{{$location}}</strong>
                                     <ul>
                                         {{range $dates}}
                                         <li
