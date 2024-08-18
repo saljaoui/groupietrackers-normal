@@ -62,23 +62,28 @@
   html { font-family: var(--ff-poppins); }
   
   body {
-      font-family: 'Roboto', 'Open Sans', 'Helvetica', Arial, sans-serif;
-     background: var(--background-color);
-     width: 100%;
-     height: 100vh;
-     display: flex;
-    justify-content: center;
-    align-items: center;  
-    overflow: hidden;
-  }
+  font-family: 'Roboto', 'Open Sans', 'Helvetica', Arial, sans-serif;
+  background: var(--background-color);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  overflow: hidden;
+  animation:transitions 0.75s ;
 
-  /* .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;  
-  }
-    
-  */
+}
+@keyframes transitions {
+    from{
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to{
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
   main{
     width: 100%;
     height: 75%;
@@ -89,7 +94,19 @@
   /*-----------------------------------*\
     #REUSED STYLE
   \*-----------------------------------*/
-  
+  .animation{
+    animation: anim 0.75s;
+  }
+  @keyframes anim {
+    from{
+      opacity: 0;
+      transform: rotateX(-10deg);
+    }
+    to{
+      opacity: 1;
+      transform: rotateX(0);
+    }
+  }
   .sidebar, article {
     background: var(--card-first-color);
     border: 1px solid var(--search-border-color);
@@ -186,8 +203,10 @@ img{
   .navbar-link:hover,
   .navbar-link:focus { color: var(--light-gray-70); }
   
-  .navbar-link.active { color: var(--orange-yellow-crayola); }
-  
+  .navbar-link:active{color: #d39c51;}
+  .navbar-link.active {
+    color: #d39c51;
+}
   /*-----------------------------------*\
     #ABOUT
   \*-----------------------------------*/
@@ -199,6 +218,7 @@ img{
     font-size: var(--fs-6);
     font-weight: var(--fw-300);
     line-height: 1.6;
+    padding: 9px 0px 0px 25px;
   }
   
 
@@ -210,6 +230,12 @@ img{
     display: none;
     overflow-y: scroll;
     height: 60vh;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.contact-artists.visible {
+  opacity: 1;
 }
 
 .visible{
@@ -219,9 +245,12 @@ img{
 .contact-artists.active {
     display: block;
 }
+
+
 /* 
 progras
 */
+
 span.prog {
   height: 6px;
   display: block;
@@ -232,12 +261,12 @@ span.prog {
   border-radius: 10px;
   margin: 6px 0 23px 17px;
 }
-/* 
-warp text
-*/
-p.contact-link.warp{
-  text-wrap: wrap;
-}
+  /* 
+  warp text
+  */
+  p.contact-link.warp{
+    text-wrap: wrap;
+  }
 
 /* 
 titles
@@ -247,6 +276,10 @@ h2.title {
   font-size: 35px;
   font-weight: 900;
   padding:5px 0 0 15px;
+}
+
+h2.titles {
+  color: white;
 }
 /* 
 scrol transparent

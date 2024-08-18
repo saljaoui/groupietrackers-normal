@@ -22,6 +22,7 @@ type JsonData struct {
 	ConcertDates string   `json:"concertDates"`
 	Relations    string   `json:"relations"`
 }
+
 type Location struct {
 	Locations []string `json:"locations"`
 }

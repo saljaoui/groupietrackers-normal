@@ -55,7 +55,7 @@
             <nav class="navbar">
                 <ul class="navbar-list">
                     <li class="navbar-item">
-                        <button id="showInfodate" class="navbar-link">Date</button>
+                        <button id="showInfodate" class="navbar-link color">Date</button>
                     </li>
                     <li class="navbar-item">
                         <button id="showInfolocation" class="navbar-link">Locations</button>
@@ -69,12 +69,10 @@
                 <header>
                     <h2 class="h2 article-title title">Date</h2>
                     <span class="prog"></span>
-
                 </header>
-
-                <section class="about-text">
+                <h2 class="titles">About</h2>
+                <section class="about-text animation">
                  
-                    <h2>About</h2>
                         <div class="dates-description">
                             <p class="tit"><strong>{{.Name}}</strong> began their musical journey with the release of their debut album on <strong>{{.FirstAlbum}}</strong>. They have since become a leading name in their genre, known for their unique sound and impactful music.</p>
                         
@@ -100,10 +98,9 @@
                 <header>
                     <h2 class="h2 article-title title">Location</h2>
                     <span class="prog"></span>
-
                 </header>
-                <section class="about-text">
-                    <h2>Locations</h2>
+                <h2 class="titles">Locations</h2>
+                <section class="about-text animation">
                     {{range .Location }}
                          <p>{{ . }}</p> 
                     {{end}}
@@ -113,9 +110,8 @@
                 <header>
                     <h2 class="h2 article-title title">Relation</h2>
                     <span class="prog"></span>
-                    <h2>Relations</h2>
-                    <div class="datesLocations">
-                        
+                    <h2 class="titles">Relations</h2>
+                    <div class="datesLocations animation">
 
                         <ul>
                             {{range $location, $dates :=

@@ -241,7 +241,7 @@ body {
   display: flex;
   align-items: center;
   background: var(--contact-background-color);
-  min-height: 24vh;
+  min-height: 30vh;
   flex-direction: column;
   gap: 20px;
   border-top: 2px solid var(--header-border-color);
@@ -485,3 +485,4 @@ body {
   height: 100%;
   border-radius: 20px;
 }
+

@@ -101,7 +101,6 @@ func GetDates(id string) (Artist, error) {
 	if err != nil {
 		return Artist{}, fmt.Errorf("error decoding artist data: %w", err)
 	}
-
 	return date, nil
 }
 
@@ -118,7 +117,6 @@ func GetLocation(id string) (Location, error) {
 	if err != nil {
 		return Location{}, fmt.Errorf("error decoding artist data: %w", err)
 	}
-	fmt.Println(locations)
 	return locations, nil
 }
 
@@ -130,10 +128,6 @@ func formatLocations(locations map[string][]string) map[string][]string {
 	}
 	return formatted
 }
-
-// func CapitalizeString(s string) string {
-//     return strings.Title(strings.NewReplacer("-", " ", "_", " ").Replace(s))
-// }
 
 func ErrorsMessage() AllMessageErrors {
 	return AllMessageErrors{
