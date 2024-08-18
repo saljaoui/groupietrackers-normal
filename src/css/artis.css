@@ -363,7 +363,7 @@ desing relotions
     .blog-banner-box { height: auto; }
   }
   
-  @media (min-width: 580px) {
+
     .navbar {
       position: absolute;
       bottom: auto;
@@ -461,10 +461,13 @@ desing relotions
     .social-list { justify-content: center; }
   
     .timeline-text { max-width: 700px; }
-  }
+  
 
 
   .dates-artist {
     color: var(--load-more-color);
     /* font-weight: 500; */
   }
+
+
+
