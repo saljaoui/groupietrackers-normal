@@ -9,7 +9,7 @@
     <!-- #MAIN -->
     <main>
         <!-- #SIDEBAR -->
-        <aside class="sidebar" data-sidebar>
+        <aside class="sidebar">
             <div class="sidebar-info">
                 <figure class="avatar-box">
                     <img src="{{ .Image }}" alt="{{ .Name }}" width="80">
@@ -19,6 +19,7 @@
                     <p class="title">Artist</p>
                 </div>
             </div>
+
             <div class="sidebar-info_more">
                 <div class="separator"></div>
                 <ul class="contacts-list">
@@ -49,13 +50,13 @@
             <nav class="navbar">
                 <ul class="navbar-list">
                     <li class="navbar-item">
-                        <button id="date" class="navbar-link" data-nav-link>Date</button>
+                        <button id="showInfodate" class="navbar-link"  >Date</button>
                     </li>
                     <li class="navbar-item">
-                        <button id="location" class="navbar-link" data-nav-link>Locations</button>
+                        <button id="showInfolocation" class="navbar-link" >Locations</button>
                     </li>
                     <li class="navbar-item">
-                        <button id="relation" class="navbar-link" data-nav-link>Relation</button>
+                        <button id="showInfoRelation" class="navbar-link"  >Relation</button>
                     </li>
                 </ul>
             </nav>
@@ -64,7 +65,10 @@
                     <h2 class="h2 article-title">Date</h2>
                 </header>
                 <section class="about-text">
-                    <p>{{ .Name }} began their musical journey with the release of their debut album in {{ .FirstAlbum }}.</p>
+                    <p>{{ .Name }}
+                         began their musical journey with the release of their debut album in
+                          {{ .FirstAlbum }}.
+                    </p>
                 </section>
             </article>
             <article id="location" class="contact-artists">

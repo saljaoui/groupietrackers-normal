@@ -61,7 +61,27 @@
   
   html { font-family: var(--ff-poppins); }
   
-  body { background: var(--background-color); }
+  body {
+      font-family: 'Roboto', 'Open Sans', 'Helvetica', Arial, sans-serif;
+     background: var(--background-color);
+     width: 100%;
+     height: 100vh;
+     display: flex;
+    justify-content: center;
+    align-items: center;  
+  }
+
+  /* .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+  }
+    
+  */
+  main{
+    width: 100%;
+    height: 75%;
+  } 
   
   li { list-style: none; }
   
@@ -86,20 +106,25 @@
   /*-----------------------------------*\
     #SIDEBAR
   \*-----------------------------------*/
-  
+  aside.sidebar {
+    width: 17%;
+}
   .sidebar.active { max-height: 405px; }
-  
+img{
+    border-radius: 10px;
+  }
   .sidebar-info {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 15px;
+    padding: 10px;
   }
   
   .info-content .name {
     color: var(--text-color);
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 26px;
+    font-weight: 900;
     margin-bottom: 10px;
   }
   
@@ -107,8 +132,8 @@
     color: var(--text-color);
     margin: auto;
     background: var(--card-second-color);
-    font-size: 12px;
-    font-weight: 300;
+    font-size: 15px;
+    font-weight: 700;
     width: max-content;
     padding: 3px 15px;
     border-radius: 8px;
@@ -118,18 +143,22 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
+    padding: 10px;
   }
   
   .contact-title {
     color: hsla(0, 0%, 84%, 0.7);
-    font-size: 12px;
+    font-size: 15px;
     text-transform: uppercase;
     margin-bottom: 2px;
+    line-height: 20px;
   }
   
   .contact-info {
     color: var(--text-color);
-    font-size: 13px;
+    font-size: 15px;
+    line-height: 18px;
+    font-family: "Poppins";
   }
   
   /*-----------------------------------*\
@@ -150,6 +179,7 @@
     font-size: var(--fs-8);
     padding: 20px 7px;
     transition: color var(--transition-1);
+
   }
   
   .navbar-link:hover,
@@ -287,6 +317,10 @@
 
 .contact-artists {
     display: none;
+}
+
+.visible{
+  display: block;
 }
 
 .contact-artists.active {
