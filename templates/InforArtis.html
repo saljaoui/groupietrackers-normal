@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/css/artis.css">
     <title>Artist Info</title>
 </head>
+
 <body>
     <!-- #MAIN -->
     <main>
         <!-- #SIDEBAR -->
+         
         <aside class="sidebar">
             <div class="sidebar-info">
                 <figure class="avatar-box">
@@ -27,7 +30,7 @@
                         <div class="contact-info">
                             <p class="contact-title">Members:</p>
                             {{ range .Members }}
-                            <a class="contact-link">{{ . }}</a>
+                            <p class="contact-link warp">{{ . }}</p>
                             {{ end }}
                         </div>
                     </li>
@@ -46,49 +49,94 @@
                 </ul>
             </div>
         </aside>
+
+
         <div class="main-content">
             <nav class="navbar">
                 <ul class="navbar-list">
                     <li class="navbar-item">
-                        <button id="showInfodate" class="navbar-link"  >Date</button>
+                        <button id="showInfodate" class="navbar-link">Date</button>
                     </li>
                     <li class="navbar-item">
-                        <button id="showInfolocation" class="navbar-link" >Locations</button>
+                        <button id="showInfolocation" class="navbar-link">Locations</button>
                     </li>
                     <li class="navbar-item">
-                        <button id="showInfoRelation" class="navbar-link"  >Relation</button>
+                        <button id="showInfoRelation" class="navbar-link">Relation</button>
                     </li>
                 </ul>
             </nav>
             <article id="date" class="contact-artists">
                 <header>
-                    <h2 class="h2 article-title">Date</h2>
+                    <h2 class="h2 article-title title">Date</h2>
+                    <span class="prog"></span>
+
                 </header>
+
                 <section class="about-text">
-                    <p>{{ .Name }}
-                         began their musical journey with the release of their debut album in
-                          {{ .FirstAlbum }}.
-                    </p>
+                 
+                    <h2>Dates</h2>
+                        <div class="dates-description">
+                            <p class="tit"><strong>{{.Name}}</strong> began their musical journey with the release of their debut album on <strong>{{.FirstAlbum}}</strong>. They have since become a leading name in their genre, known for their unique sound and impactful music.</p>
+                        
+                            <p>Their songs often reflect a commitment to important causes, making them more than just entertainers—they are voices for change. Their concerts are celebrated for fostering a sense of unity and shared purpose among fans.</p>
+                        
+                            <p>Recent notable performances include:</p>
+                  
+                        
+                            <p>These dates represent just a fraction of their extensive touring history. <strong>{{.Name}}</strong> continues to inspire audiences around the world.</p>
+                        </div>
+                        <ul>
+                            {{range .Date}}
+                            <li><strong>{{.}}</strong></li>
+                            {{end}}
+                        </ul>
+                    
+                        <p>These dates represent just a fraction of their extensive touring history. <strong>{{.Name}}</strong> continues to inspire audiences around the world.</p>
+
                 </section>
             </article>
             <article id="location" class="contact-artists">
                 <header>
-                    <h2 class="h2 article-title">Location</h2>
+                    <h2 class="h2 article-title title">Location</h2>
+                    <span class="prog"></span>
+
                 </header>
                 <section class="about-text">
-                    <p>{{ .Name }} began their musical journey with the release of their debut album in {{ .FirstAlbum }}.</p>
+                    <h2>Dates</h2>
+                    {{range .Location }}
+                         <p>{{ . }}</p> 
+                    {{end}}
                 </section>
             </article>
             <article id="relation" class="contact-artists">
                 <header>
-                    <h2 class="h2 article-title">Relation</h2>
+                    <h2 class="h2 article-title title">Relation</h2>
+                    <span class="prog"></span>
+                    <div class="datesLocations">
+
+                        <ul>
+                            {{range $location, $dates :=
+                            .DatesLocations}}
+                            <div class="timeline-item">
+                                <li>
+                                    <strong
+                                        class="institution">{{$location}}:</strong>
+                                    <ul>
+                                        {{range $dates}}
+                                        <li
+                                            class="year">{{.}}</li>
+                                        {{end}}
+                                    </ul>
+                                </li>
+                            </div>
+                            {{end}}
+                        </ul>
+                    </div>
                 </header>
-                <section class="about-text">
-                    <p>{{ .Name }} began their musical journey with the release of their debut album in {{ .FirstAlbum }}.</p>
-                </section>
             </article>
         </div>
     </main>
     <script src="/styles/js/navigation.js"></script>
 </body>
+
 </html>

@@ -6,10 +6,10 @@ type Artist struct {
 	Name           string              `json:"name"`
 	Members        []string            `json:"members"`
 	DatesLocations map[string][]string `json:"datesLocations"`
-	CreationDate   int            `json:"concertDates"`
+	CreationDate   int                 `json:"concertDates"`
 	FirstAlbum     string              `json:"firstAlbum"`
-	Date          []string             `json:"date"`
-	Location       []string             `json:"locations"`
+	Date           []string            `json:"dates"`
+	Location       []string            `json:"locations"`
 }
 type JsonData struct {
 	Id           int      `json:"id"`
@@ -23,10 +23,10 @@ type JsonData struct {
 	Relations    string   `json:"relations"`
 }
 type Location struct {
-	Locations    []string   `json:"locations"`
+	Locations []string `json:"locations"`
 }
 type Date struct {
-	Date          []string              `json:"date"`
+	Date []string `json:"dates"`
 }
 type Errors struct {
 	Message     string

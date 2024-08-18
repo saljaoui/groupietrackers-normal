@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 func GetArtistsDataStruct() ([]JsonData, error) {
@@ -33,24 +34,24 @@ func FetchDataRelationFromId(id string) (Artist, error) {
 		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
 	}
 
-	dates , err2 := GetDates(id)
+	dates, err2 := GetDates(id)
 	if err2 != nil {
 		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
 	}
 
-	location , err3 := GetLocation(id)
+	location, err3 := GetLocation(id)
 	if err3 != nil {
 		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
 	}
 
-	respBody, err4 := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
+	relation, err4 := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
 	if err4 != nil {
 		return Artist{}, fmt.Errorf("error fetching data from URL: %w", err)
 	}
-	defer respBody.Body.Close()
+	defer relation.Body.Close()
 
 	var artist Artist
-	err = json.NewDecoder(respBody.Body).Decode(&artist)
+	err = json.NewDecoder(relation.Body).Decode(&artist)
 	if err != nil {
 		return Artist{}, fmt.Errorf("error decoding response: %w", err)
 	}
@@ -59,14 +60,14 @@ func FetchDataRelationFromId(id string) (Artist, error) {
 	artist.Name = artistsJson.Name
 	artist.Members = artistsJson.Members
 	artist.FirstAlbum = artistsJson.FirstAlbum
-	artist.CreationDate  = artistsJson.CreationDate
+	artist.CreationDate = artistsJson.CreationDate
 	artist.Date = dates.Date
 	artist.Location = location.Locations
-
-
-	// if artist.ID == 0 {
-	// 	return Artist{}, fmt.Errorf("invalid artist ID")
-	// }
+	locations := formatLocations(artist.DatesLocations)
+	artist.DatesLocations = locations
+	if artist.ID == 0 {
+		return Artist{}, fmt.Errorf("invalid artist ID")
+	}
 
 	return artist, nil
 }
@@ -100,7 +101,7 @@ func GetDates(id string) (Artist, error) {
 	if err != nil {
 		return Artist{}, fmt.Errorf("error decoding artist data: %w", err)
 	}
-	fmt.Println("date:",date)
+
 	return date, nil
 }
 
@@ -121,14 +122,14 @@ func GetLocation(id string) (Location, error) {
 	return locations, nil
 }
 
-// func formatLocations(locations map[string][]string) map[string][]string {
-//     formatted := make(map[string][]string, len(locations))
-//     for location, dates := range locations {
-//         formattedLoc := strings.Title(strings.NewReplacer("-", " ", "_", " ").Replace(location))
-//         formatted[formattedLoc] = dates
-//     }
-//     return formatted
-// }
+func formatLocations(locations map[string][]string) map[string][]string {
+	formatted := make(map[string][]string, len(locations))
+	for location, dates := range locations {
+		formattedLoc := strings.Title(strings.NewReplacer("-", " ", "_", " ").Replace(location))
+		formatted[formattedLoc] = dates
+	}
+	return formatted
+}
 
 // func CapitalizeString(s string) string {
 //     return strings.Title(strings.NewReplacer("-", " ", "_", " ").Replace(s))

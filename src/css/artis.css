@@ -45,8 +45,7 @@
   }
   header {
     color: var(--text-color);
-  }
-  
+}
   input, textarea {
     display: block;
     width: 100%;
@@ -69,6 +68,7 @@
      display: flex;
     justify-content: center;
     align-items: center;  
+    overflow: hidden;
   }
 
   /* .container{
@@ -200,6 +200,124 @@ img{
     line-height: 1.6;
   }
   
+
+  .navbar-link.active {
+    background-color: #555;
+}
+
+.contact-artists {
+    display: none;
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+.visible{
+  display: block;
+}
+
+.contact-artists.active {
+    display: block;
+}
+/* 
+progras
+*/
+span.prog {
+  height: 6px;
+  display: block;
+  font-size: 40px;
+  position: relative;
+  background: #FDC663;
+  width: 54px;
+  border-radius: 10px;
+  margin: 6px 0 23px 17px;
+}
+/* 
+warp text
+*/
+p.contact-link.warp{
+  text-wrap: wrap;
+}
+
+/* 
+titles
+
+*/
+h2.title {
+  font-size: 35px;
+  font-weight: 900;
+  padding:5px 0 0 15px;
+}
+/* 
+scrol transparent
+*/
+
+::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+/* 
+desing relotions
+
+*/
+.datesLocations {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 32px 19px 0 30px;
+  overflow-y: scroll;
+  height: 60vh;
+
+}
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  line-height: 25px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #FDC663;
+  box-shadow: 0 0 10px rgba(326, 235, 166, 13.5);
+
+}
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 24px;
+  bottom: -20px;
+    width: 1px;
+    height: calc(100% + 19px);
+  background-color: #f9f9f9;
+}
+.timeline-item:last-child::after {
+  display: none;
+}
+.institution {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #FDC663;
+}
+.year {
+  font-weight: 500;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  color: #cccccc;
+}
+
+
   /*-----------------------------------*\
     #RESPONSIVE
   \*-----------------------------------*/
@@ -310,19 +428,3 @@ img{
   
     .timeline-text { max-width: 700px; }
   }
-
-  .navbar-link.active {
-    background-color: #555;
-}
-
-.contact-artists {
-    display: none;
-}
-
-.visible{
-  display: block;
-}
-
-.contact-artists.active {
-    display: block;
-}

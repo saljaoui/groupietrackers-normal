@@ -9,9 +9,10 @@ import (
 )
 
 func main() {
+	port := ":8083"
 	http.HandleFunc("/", Groupie_tracker.GetDataFromJson)
 	http.HandleFunc("/Artist/{id}", Groupie_tracker.HandlerShowRelation)
 	http.HandleFunc("/styles/", Groupie_tracker.HandleStyle)
-	fmt.Println("http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Printf("http://localhost%s", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
