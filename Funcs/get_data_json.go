@@ -1,7 +1,7 @@
 package Groupie_tracker
 
 import (
-	"fmt"
+
 	"net/http"
 	"os"
 	"path/filepath"
@@ -10,12 +10,12 @@ import (
 
 type ArtistWithLocation struct {
 	JsonData interface{}
-	// ArtistData Artist
+
 }
 
 var (
 	tmpl   *template.Template
-	errors AllMessageErrors
+	errors AllMessageErrors 
 )
 
 // Initialize the global template variable
@@ -44,11 +44,10 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 func HandlerShowRelation(w http.ResponseWriter, r *http.Request) {
 	idParam := r.PathValue("id")
 	artist, err := FetchDataRelationFromId(idParam)
-	fmt.Println(err)
-	// if err != nil {
-	// 	HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
-	// 	return
-	// }
+	if err != nil {
+		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
+		return
+	}
 	errs := tmpl.ExecuteTemplate(w, "InforArtis.html", artist)
 	if errs != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)

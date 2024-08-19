@@ -25,7 +25,6 @@ func GetArtistsDataStruct() ([]JsonData, error) {
 	if err != nil {
 		return nil, fmt.Errorf("khata2 f t7wil JSON: %v", err)
 	}
-
 	return artistData, nil
 }
 
@@ -38,6 +37,11 @@ func FetchDataRelationFromId(id string) (Artist, error) {
 	if err != nil {
 		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
 	}
+
+	if artist.ID == 0 {
+		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
+	}
+
 	var date Date
 	urldate := url + "/dates/" + id
 	errdate := GetanyStruct(urldate, &date)
