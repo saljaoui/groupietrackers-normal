@@ -39,7 +39,7 @@ func FetchDataRelationFromId(id string) (Artist, error) {
 	}
 
 	if artist.ID == 0 {
-		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
+		return artist , nil
 	}
 
 	var date Date

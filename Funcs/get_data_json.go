@@ -48,6 +48,12 @@ func HandlerShowRelation(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
+	
+	if artist.ID == 0 {
+		HandleErrors(w, errors.NotFound, errors.DescriptionNotFound, http.StatusNotFound)
+		return
+	}
+
 	errs := tmpl.ExecuteTemplate(w, "InforArtis.html", artist)
 	if errs != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
