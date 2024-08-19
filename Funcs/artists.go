@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// func to Get All data From json
 func GetArtistsDataStruct() ([]JsonData, error) {
 	var artistData []JsonData
 
@@ -28,98 +29,56 @@ func GetArtistsDataStruct() ([]JsonData, error) {
 	return artistData, nil
 }
 
+// / func to fetching data from any struct and return Struct Artist with Id user
 func FetchDataRelationFromId(id string) (Artist, error) {
-	artistsJson, err := GetDataFromArtistsWithID(id)
-	if err != nil {
-		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
-	}
-
-	dates, err2 := GetDates(id)
-	if err2 != nil {
-		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
-	}
-
-	location, err3 := GetLocation(id)
-	if err3 != nil {
-		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
-	}
-
-	relation, err4 := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
-	if err4 != nil {
-		return Artist{}, fmt.Errorf("error fetching data from URL: %w", err)
-	}
-	defer relation.Body.Close()
-
+	url := "https://groupietrackers.herokuapp.com/api"
+	urlartist := url + "/artists/" + id
 	var artist Artist
-	err = json.NewDecoder(relation.Body).Decode(&artist)
+	err := GetanyStruct(urlartist, &artist)
 	if err != nil {
-		return Artist{}, fmt.Errorf("error decoding response: %w", err)
+		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", err)
+	}
+	var date Date
+	urldate := url + "/dates/" + id
+	errdate := GetanyStruct(urldate, &date)
+	if err != nil {
+		return Artist{}, fmt.Errorf("error fetching data from artist data: %w", errdate)
 	}
 
-	artist.Image = artistsJson.Image
-	artist.Name = artistsJson.Name
-	artist.Members = artistsJson.Members
-	artist.FirstAlbum = artistsJson.FirstAlbum
-	artist.CreationDate = artistsJson.CreationDate
-	artist.Date = dates.Date
-	artist.Location = location.Locations
-	locations := formatLocations(artist.DatesLocations)
-	artist.DatesLocations = locations
-	if artist.ID == 0 {
-		return Artist{}, fmt.Errorf("invalid artist ID")
+	var location Location
+	urlLocation := url + "/locations/" + id
+	errlocations := GetanyStruct(urlLocation, &location)
+	if err != nil {
+		return Artist{}, fmt.Errorf("error fetching data from locations data: %w", errlocations)
 	}
-
+	var relation Relation
+	urlrelation := url + "/relation/" + id
+	errrelation := GetanyStruct(urlrelation, &relation)
+	if err != nil {
+		return Artist{}, fmt.Errorf("error fetching data from locations data: %w", errrelation)
+	}
+	artist.Location = location.Location
+	artist.Date = date.Date
+	artist.DatesLocations = formatLocations(relation.DatesLocations)
 	return artist, nil
 }
 
-func GetDataFromArtistsWithID(id string) (JsonData, error) {
-	urlArtists := "https://groupietrackers.herokuapp.com/api/artists/" + id
-	resp, err := http.Get(urlArtists)
+// func to UnmarshalJSON from any struct with send url and any
+// return error for has any error
+func GetanyStruct[T any](url string, result *T) error {
+	response, err := http.Get(url)
 	if err != nil {
-		return JsonData{}, fmt.Errorf("error fetching data from URL: %w", err)
+		return fmt.Errorf("error fetching data from URL: %w", err)
 	}
-	defer resp.Body.Close()
-
-	var artistsJson JsonData
-	err = json.NewDecoder(resp.Body).Decode(&artistsJson)
-	if err != nil {
-		return JsonData{}, fmt.Errorf("error decoding artist data: %w", err)
+	defer response.Body.Close()
+	// Decode the JSON response into the provided struct
+	if err := json.NewDecoder(response.Body).Decode(result); err != nil {
+		return fmt.Errorf("error decoding JSON data: %w", err)
 	}
-	return artistsJson, nil
+	return nil
 }
 
-func GetDates(id string) (Artist, error) {
-	urlArtists := "https://groupietrackers.herokuapp.com/api/dates/" + id
-	resp, err := http.Get(urlArtists)
-	if err != nil {
-		return Artist{}, fmt.Errorf("error fetching data from URL: %w", err)
-	}
-	defer resp.Body.Close()
-
-	var date Artist
-	err = json.NewDecoder(resp.Body).Decode(&date)
-	if err != nil {
-		return Artist{}, fmt.Errorf("error decoding artist data: %w", err)
-	}
-	return date, nil
-}
-
-func GetLocation(id string) (Location, error) {
-	urlArtists := "https://groupietrackers.herokuapp.com/api/locations/" + id
-	resp, err := http.Get(urlArtists)
-	if err != nil {
-		return Location{}, fmt.Errorf("error fetching data from URL: %w", err)
-	}
-	defer resp.Body.Close()
-
-	var locations Location
-	err = json.NewDecoder(resp.Body).Decode(&locations)
-	if err != nil {
-		return Location{}, fmt.Errorf("error decoding artist data: %w", err)
-	}
-	return locations, nil
-}
-
+// func To Format String To remove '_' or '-' and Capitaliz text
 func formatLocations(locations map[string][]string) map[string][]string {
 	formatted := make(map[string][]string, len(locations))
 	for location, dates := range locations {
@@ -127,15 +86,4 @@ func formatLocations(locations map[string][]string) map[string][]string {
 		formatted[formattedLoc] = dates
 	}
 	return formatted
-}
-
-func ErrorsMessage() AllMessageErrors {
-	return AllMessageErrors{
-		NotFound:                 "Page Not Found",
-		BadRequest:               "Bad Request",
-		InternalError:            "Internal Server Error",
-		DescriptionNotFound:      "Sorry, the page you are looking for does not exist. It might have been moved or deleted. Please check the URL or return to the homepage.",
-		DescriptionBadRequest:    "The request could not be understood by the server due to malformed syntax. Please verify your input and try again.",
-		DescriptionInternalError: "An unexpected error occurred on the server. We are working to resolve this issue. Please try again later.",
-	}
 }

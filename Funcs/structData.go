@@ -1,16 +1,5 @@
 package Groupie_tracker
 
-type Artist struct {
-	ID             int                 `json:"id"`
-	Image          string              `json:"image"`
-	Name           string              `json:"name"`
-	Members        []string            `json:"members"`
-	DatesLocations map[string][]string `json:"datesLocations"`
-	CreationDate   int                 `json:"concertDates"`
-	FirstAlbum     string              `json:"firstAlbum"`
-	Date           []string            `json:"dates"`
-	Location       []string            `json:"locations"`
-}
 type JsonData struct {
 	Id           int      `json:"id"`
 	Image        string   `json:"image"`
@@ -22,13 +11,27 @@ type JsonData struct {
 	ConcertDates string   `json:"concertDates"`
 	Relations    string   `json:"relations"`
 }
-
+type Artist struct {
+	ID             int                 `json:"id"`
+	Image          string              `json:"image"`
+	Name           string              `json:"name"`
+	Members        []string            `json:"members"`
+	DatesLocations map[string][]string `json:"datesLocations"`
+	CreationDate   int                 `json:"creationDate"`
+	FirstAlbum     string              `json:"firstAlbum"`
+	Date           []string            `json:"dates"`
+	Location       interface{}         `json:"locations"`
+}
 type Location struct {
-	Locations []string `json:"locations"`
+	Location interface{} `json:"locations"`
 }
 type Date struct {
 	Date []string `json:"dates"`
 }
+type Relation struct {
+	DatesLocations map[string][]string `json:"datesLocations"`
+}
+
 type Errors struct {
 	Message     string
 	Code        int

@@ -1,10 +1,10 @@
 package Groupie_tracker
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
-
 	"text/template"
 )
 
@@ -44,13 +44,13 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 func HandlerShowRelation(w http.ResponseWriter, r *http.Request) {
 	idParam := r.PathValue("id")
 	artist, err := FetchDataRelationFromId(idParam)
-
-	if err != nil {
-		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
-		return
-	}
-	err = tmpl.ExecuteTemplate(w, "InforArtis.html", artist)
-	if err != nil {
+	fmt.Println(err)
+	// if err != nil {
+	// 	HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
+	// 	return
+	// }
+	errs := tmpl.ExecuteTemplate(w, "InforArtis.html", artist)
+	if errs != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}

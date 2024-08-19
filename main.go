@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	port := ":8080"
+	port := ":8082"
 	http.HandleFunc("/", Groupie_tracker.GetDataFromJson)
 	http.HandleFunc("/Artist/{id}", Groupie_tracker.HandlerShowRelation)
 	http.HandleFunc("/styles/", Groupie_tracker.HandleStyle)
